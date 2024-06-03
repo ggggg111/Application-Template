@@ -1,5 +1,6 @@
 #include "yhvpch.h"
 #include "YuHuiVEngine/Core/Application.h"
+#include "YuHuiVEngine/Core/Logger.h"
 
 namespace Yuhui
 {
@@ -10,6 +11,8 @@ namespace Yuhui
 
 		AddModule(m_Window.get());
 		AddModule(m_Renderer.get());
+
+		Logger::Init();
 	}
 
 	Application::~Application()

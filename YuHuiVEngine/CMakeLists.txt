@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include_directories(
 	BEFORE
 	src
+	vendor/spdlog/include
 )
 
 add_executable(
@@ -18,6 +19,8 @@ add_executable(
 	src/YuHuiVEngine/Core/Application.cpp
 	src/YuHuiVEngine/Core/LayerStack.h
 	src/YuHuiVEngine/Core/LayerStack.cpp
+	src/YuHuiVEngine/Core/Logger.h
+	src/YuHuiVEngine/Core/Logger.cpp
 	src/YuHuiVEngine/Modules/Module.h
 	src/YuHuiVEngine/Modules/Window.h
 	src/YuHuiVEngine/Modules/Window.cpp
@@ -40,6 +43,9 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DI
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE src/yhvpch.h)
 
-#target_link_libraries(
-	#${PROJECT_NAME}
-#)
+add_subdirectory(vendor/spdlog)
+
+target_link_libraries(
+	${PROJECT_NAME}
+	spdlog
+)
