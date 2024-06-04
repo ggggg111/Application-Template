@@ -36,10 +36,14 @@ set(DEBUG_ONLY_DEFINITIONS $<$<CONFIG:Debug>:YHD_DEBUG>)
 set(RELEASE_ONLY_DEFINITIONS $<$<CONFIG:Release>:YHD_DIST>)
 set(DIST_ONLY_DEFINITIONS $<$<CONFIG:RelWithDebInfo>:YHD_RELEASE>)
 
-target_compile_definitions(${PROJECT_NAME} PUBLIC ${DEBUG_ONLY_DEFINITIONS})
-target_compile_definitions(${PROJECT_NAME} PUBLIC ${RELEASE_ONLY_DEFINITIONS})
-target_compile_definitions(${PROJECT_NAME} PUBLIC ${DIST_ONLY_DEFINITIONS})
-target_compile_definitions(${PROJECT_NAME} PUBLIC ASSETS_PATH="${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/assets/")
+target_compile_definitions(
+	${PROJECT_NAME}
+	PUBLIC
+	ASSETS_PATH="${CMAKE_SOURCE_DIR}/${PROJECT_NAME}/assets/"
+	${DEBUG_ONLY_DEFINITIONS}
+	${RELEASE_ONLY_DEFINITIONS}
+	${DIST_ONLY_DEFINITIONS}
+)
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE src/yhvpch.h)
 
